@@ -21,4 +21,4 @@
 
     - name: Display Root Directories
       debug:
-        msg: {{ directories_output.stdout_lines }}
+        msg: "{{ directories_output.stdout_lines }}"
