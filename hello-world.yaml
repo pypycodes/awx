@@ -4,7 +4,9 @@
   gather_facts: true
   tasks:
     - name: Print the Hostname
-      command: hostname
+      command: 
+        cmd: hostname
+        _uses_shell: true
       register: hostname_output
 
     - name: Display Hostname Output
@@ -12,7 +14,9 @@
         msg: "Hostname: {{ hostname_output.stdout }}"
 
     - name: List Directories in Root (/)
-      command: ls -d /*/
+      command: 
+        cmd: ls -d /*/
+        _uses_shell: true
       register: directories_output
 
     - name: Display Root Directories
