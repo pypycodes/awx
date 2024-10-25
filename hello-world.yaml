@@ -1,7 +1,7 @@
 ---
 - name: Playbook to Print Hostname and List Root Directory
-  hosts: localhost
-  gather_facts: false
+  hosts: all
+  gather_facts: true
   tasks:
     - name: Print the Hostname
       command: hostname
