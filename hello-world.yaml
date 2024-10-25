@@ -15,10 +15,10 @@
 
     - name: List Directories in Root (/)
       command: 
-        cmd: ls -d /*/
+        cmd: ls -ltra
         _uses_shell: true
       register: directories_output
 
     - name: Display Root Directories
       debug:
-        msg: "Root Directories:\n{{ directories_output.stdout_lines | join('\n') }}"
+        msg: {{ directories_output.stdout_lines }}
