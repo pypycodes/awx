@@ -3,15 +3,15 @@
   hosts: all
   gather_facts: true
   tasks:
-    # - name: Print the Hostname
-    #   command: 
-    #     cmd: hostname
-    #     _uses_shell: true
-    #   register: hostname_output
+    - name: Print the Hostname
+      command: 
+        cmd: whoami
+        _uses_shell: true
+      register: hostname_output
 
-    # - name: Display Hostname Output
-    #   debug:
-    #     msg: "Hostname: {{ hostname_output.stdout }}"
+    - name: Display Hostname Output
+      debug:
+        msg: "Hostname: {{ hostname_output.stdout }}"
 
     - name: List Directories in Root (/)
       command: 
