@@ -1,6 +1,20 @@
-- name: Hello World Sample
-  hosts: all
+---
+- name: Playbook to Print Hostname and List Root Directory
+  hosts: localhost
+  gather_facts: false
   tasks:
-    - name: Hello Message
+    - name: Print the Hostname
+      command: hostname
+      register: hostname_output
+
+    - name: Display Hostname Output
       debug:
-        msg: "Hello World!"
+        msg: "Hostname: {{ hostname_output.stdout }}"
+
+    - name: List Directories in Root (/)
+      command: ls -d /*/
+      register: directories_output
+
+    - name: Display Root Directories
+      debug:
+        msg: "Root Directories:\n{{ directories_output.stdout_lines | join('\n') }}"
