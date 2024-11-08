@@ -13,9 +13,9 @@
       debug:
         msg: "Whoami: {{ whoami_output.stdout }}"
 
-    - name: Print the EE Hostname
+    - name: Print the EE OS
       command: 
-        cmd: hostname
+        cmd: cat /etc/os-release
         _uses_shell: true
       register: hostname_output
 
