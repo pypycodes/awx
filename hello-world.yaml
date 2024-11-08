@@ -1,17 +1,27 @@
 ---
 - name: Playbook to Print Hostname and List Root Directory
   hosts: all
-  gather_facts: true
+  gather_facts: false
   tasks:
-    - name: Print the Hostname
+    - name: Print the Who Am I
       command: 
         cmd: whoami
         _uses_shell: true
+      register: whoami_output
+
+    - name: Display Who Am I Output
+      debug:
+        msg: "Whoami: {{ whoami_output.stdout }}"
+
+    - name: Print the EE Hostname
+      command: 
+        cmd: hostname
+        _uses_shell: true
       register: hostname_output
 
-    - name: Display Hostname Output
+    - name: Display Hostname
       debug:
-        msg: "Hostname: {{ hostname_output.stdout }}"
+        msg: "Hostname: {{ hostname_output.stdout }}"        
 
     - name: List Directories in Root (/)
       command: 
