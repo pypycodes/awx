@@ -1,34 +1,54 @@
 ---
-- name: Playbook to Print Hostname and List Root Directory
+- name: Display system information and sleep
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
-    - name: Print Hostname
-      command: 
-        cmd: echo $HOSTNAME 
-        _uses_shell: true
-      register: whoami_output
 
-    - name: Display Who Am I Output
-      debug:
-        msg: "Whoami: {{ whoami_output.stdout }}"
+    - name: Display hostname
+      ansible.builtin.debug:
+        msg: "Hostname: {{ ansible_hostname }}"
 
-    - name: Print the EE OS
-      command: 
-        cmd: cat /etc/os-release
-        _uses_shell: true
-      register: hostname_output
+    - name: Display OS release name
+      ansible.builtin.debug:
+        msg: "OS Release: {{ ansible_distribution }} {{ ansible_distribution_version }}"
 
-    - name: Display Hostname
-      debug:
-        msg: "Hostname: {{ hostname_output.stdout }}"        
+    - name: Sleep for 60 seconds
+      ansible.builtin.command: sleep 60
+      changed_when: false
 
-    - name: List Directories in Root (/)
-      command: 
-        cmd: ls -ltra
-        _uses_shell: true
-      register: directories_output
 
-    - name: Display Root Directories
-      debug:
-        msg: "{{ directories_output.stdout_lines }}"
+
+# ---
+# - name: Playbook to Print Hostname and List Root Directory
+#   hosts: all
+#   gather_facts: false
+#   tasks:
+#     - name: Print Hostname
+#       command: 
+#         cmd: echo $HOSTNAME 
+#         _uses_shell: true
+#       register: whoami_output
+
+#     - name: Display Who Am I Output
+#       debug:
+#         msg: "Whoami: {{ whoami_output.stdout }}"
+
+#     - name: Print the EE OS
+#       command: 
+#         cmd: cat /etc/os-release
+#         _uses_shell: true
+#       register: hostname_output
+
+#     - name: Display Hostname
+#       debug:
+#         msg: "Hostname: {{ hostname_output.stdout }}"        
+
+#     - name: List Directories in Root (/)
+#       command: 
+#         cmd: ls -ltra
+#         _uses_shell: true
+#       register: directories_output
+
+#     - name: Display Root Directories
+#       debug:
+#         msg: "{{ directories_output.stdout_lines }}"
