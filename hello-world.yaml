@@ -1,6 +1,6 @@
 ---
 - name: Display system information and sleep
-  hosts: all
+  hosts: localhost
   gather_facts: true
   tasks:
 
