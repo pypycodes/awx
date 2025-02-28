@@ -3,9 +3,9 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Print the Who Am I
+    - name: Print Hostname
       command: 
-        cmd: whoami
+        cmd: echo $HOSTNAME 
         _uses_shell: true
       register: whoami_output
 
